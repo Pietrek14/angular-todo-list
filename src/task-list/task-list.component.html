@@ -1,0 +1,53 @@
+<table border="1" class="task-list">
+  <thead>
+    <th class="task-list__lp">L.p.</th>
+    <th class="task-list__name">Nazwa</th>
+    <th class="task-list__date">Data</th>
+  </thead>
+  <tr *ngFor="let task of tasks; let i = index">
+    <td>
+      {{ i + 1 }}
+    </td>
+
+    <div *ngIf="i != currently_edited; then displayBlock; else editBlock"></div>
+
+    <ng-template #displayBlock>
+      <td>
+        {{ task.name }}
+      </td>
+
+      <td>
+        {{ task.date | date: 'HH:mm:ss, dd.LL.YYYY' }}
+      </td>
+
+      <td *ngIf="in_progress" class="button-container edit-button-container">
+        <button (click)="edit(i)">Edytuj</button>
+      </td>
+      <td *ngIf="in_progress" class="button-container delete-button-container">
+        <button (click)="markAsDone(i)">Oznacz jako wykonane</button>
+      </td>
+      <td *ngIf="in_progress" class="button-container delete-button-container">
+        <button (click)="delete(i)">Usuń</button>
+      </td>
+    </ng-template>
+
+    <ng-template #editBlock>
+      <td>
+        <input id="name" type="text" [formControl]="edit_name" />
+      </td>
+
+      <td>
+        <input id="date" type="datetime-local" [formControl]="edit_date" />
+      </td>
+
+      <td class="button-container">
+        <button (click)="finish_edit()">Zatwierdź</button>
+      </td>
+    </ng-template>
+  </tr>
+  <tr *ngIf="in_progress">
+    <td colspan="5" class="button-container">
+      <button (click)="add()">Dodaj nowe zadanie</button>
+    </td>
+  </tr>
+</table>

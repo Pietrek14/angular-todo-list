@@ -1,0 +1,34 @@
+table,
+th,
+td {
+  border: 1px solid;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+table {
+  margin-bottom: 2rem;
+}
+
+button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.button-container {
+  padding: 3px 7px;
+}
+
+.task-list__lp {
+  width: 3rem;
+}
+
+.task-list__name {
+  width: 9rem;
+}
+
+.task-list__date {
+  width: 12rem;
+}
